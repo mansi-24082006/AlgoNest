@@ -1,66 +1,56 @@
+package javaapplication;
 import java.util.Scanner;
 
-public class InsertionSort {
-
-    // Insertion Sort algorithm with step-by-step output
-    public static void insertionSort(int[] arr) {
+public class P2 {
+    void sort(int arr[]) {
         int n = arr.length;
-
-        System.out.println("\n--- Insertion Sort Steps ---");
-        for (int i = 1; i < n; i++) {
-            int key = arr[i];  // The value to be inserted
+        for (int i = 1; i < n; ++i) {
+            int key = arr[i];
             int j = i - 1;
 
-            // Shift elements that are greater than key to one position ahead
             while (j >= 0 && arr[j] > key) {
                 arr[j + 1] = arr[j];
                 j = j - 1;
             }
-
-            // Place key in its correct location
             arr[j + 1] = key;
 
             // Print array after each pass
             System.out.print("Pass " + i + ": ");
-            for (int num : arr) {
-                System.out.print(num + " ");
-            }
-            System.out.println();
+            printArray(arr);
         }
     }
 
-    public static void main(String[] args) {
+    static void printArray(int arr[]) {
+        for (int value : arr)
+            System.out.print(value + " ");
+        System.out.println();
+    }
+
+    public static void main(String args[]) {
         Scanner sc = new Scanner(System.in);
 
-        // Step 1: Input size
         System.out.print("Enter number of elements: ");
-        int size = sc.nextInt();
-        int[] arr = new int[size];
+        int n = sc.nextInt();
 
-        // Step 2: Input array values
-        System.out.println("Enter " + size + " integers:");
-        for (int i = 0; i < size; i++) {
+        int arr[] = new int[n];
+        System.out.println("Enter " + n + " integers:");
+        for (int i = 0; i < n; i++) {
             arr[i] = sc.nextInt();
         }
 
-        // Step 3: Measure time and sort
-        long startTime = System.nanoTime();
-        insertionSort(arr);
-        long endTime = System.nanoTime();
+        P2 ob = new P2();
 
-        // Step 4: Output sorted array
-        System.out.println("\nSorted Array:");
-        for (int num : arr) {
-            System.out.print(num + " ");
-        }
+        long startTime = System.nanoTime();  // Start time before sorting
+        ob.sort(arr);
+        long endTime = System.nanoTime();    // End time after sorting
 
-        // Step 5: Time taken in different units
-        long durationNano = endTime - startTime;
-      
+        System.out.print("Final Sorted Array: ");
+        printArray(arr);
 
-        System.out.println("\n\nInsertion Sort Time Taken:");
-        System.out.println("- " + durationNano + " nanoseconds");
-        
+        long duration = endTime - startTime;  // Duration in nanoseconds
+        System.out.println("Execution time in nanoseconds: " + duration);
+
+        sc.close();  // Close the scanner to avoid resource leak
     }
 }
 
@@ -73,23 +63,15 @@ public class InsertionSort {
 
 
 
-
-////////////////Output
-Enter number of elements: 6
-Enter 6 integers:
-10 9 2 4 1 14 20
-
---- Insertion Sort Steps ---
-Pass 1: 9 10 2 4 1 14 
-Pass 2: 2 9 10 4 1 14 
-Pass 3: 2 4 9 10 1 14 
-Pass 4: 1 2 4 9 10 14 
-Pass 5: 1 2 4 9 10 14 
-
-Sorted Array:
-1 2 4 9 10 14 
-
-Insertion Sort Time Taken:
-- 1966930 nanoseconds
+/////////////////Output
+Enter number of elements: 5
+Enter 5 integers:
+3 4 2 1 6
+Pass 1: 3 4 2 1 6 
+Pass 2: 2 3 4 1 6 
+Pass 3: 1 2 3 4 6 
+Pass 4: 1 2 3 4 6 
+Final Sorted Array: 1 2 3 4 6 
+Execution time in nanoseconds: 5472099
 
 === Code Execution Successful ===
