@@ -9,6 +9,10 @@ public class Merge {
             mergeSort(arr, left, mid);
             mergeSort(arr, mid + 1, right);
             merge(arr, left, mid, right);
+
+            // Print the array after each merge (pass)
+            System.out.print("After merging from index " + left + " to " + right + ": ");
+            printArray(arr);
         }
     }
 
@@ -50,6 +54,13 @@ public class Merge {
         }
     }
 
+    public static void printArray(int[] arr) {
+        for (int num : arr) {
+            System.out.print(num + " ");
+        }
+        System.out.println();
+    }
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
@@ -70,10 +81,7 @@ public class Merge {
         long endTime = System.nanoTime();
 
         System.out.println("Sorted array:");
-        for (int num : arr) {
-            System.out.print(num + " ");
-        }
-        System.out.println();
+        printArray(arr);
 
         long duration = endTime - startTime;
         System.out.println("Execution time in nanoseconds: " + duration);
@@ -84,12 +92,24 @@ public class Merge {
 
 
 
-///////////////Output
+
+
+
+
+///////////////////Output
+debug:
 Enter number of elements: 5
 Enter 5 numbers:
-8 3 7 2 5
+8
+3
+7
+2
+5
+After merging from index 0 to 1: 3 8 7 2 5 
+After merging from index 0 to 2: 3 7 8 2 5 
+After merging from index 3 to 4: 3 7 8 2 5 
+After merging from index 0 to 4: 2 3 5 7 8 
 Sorted array:
 2 3 5 7 8 
-Execution time in nanoseconds: 12920
-
-=== Code Execution Successful ===
+Execution time in nanoseconds: 227799
+BUILD SUCCESSFUL (total time: 9 seconds)
